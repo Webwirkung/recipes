@@ -1,0 +1,16 @@
+{
+    "manifests": {
+        "webwirkung/shopware-starter": {
+            "manifest": {
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "post-install-output": [
+                    "  * <fg=blue>Setup</>",
+                    "    Test "
+                ]
+            },
+            "ref": "9c1b29f4e3f33f4ca2da2529771c849d2bb326d8"
+        }
+    }
+}
