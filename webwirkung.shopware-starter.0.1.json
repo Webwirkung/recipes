@@ -5,6 +5,35 @@
                 "copy-from-recipe": {
                     "config/": "%CONFIG_DIR%/"
                 },
+                "gitignore": [
+                    "/public/asset-manifest.json",
+                    "!custom/apps/",
+                    ".idea/",
+                    "!/files/theme-config",
+                    "*.sql",
+                    "*.gz",
+                    "*.bak",
+                    "**/.DS_Store"
+
+                ],
+                "docker-compose": {
+                    "docker-compose.override.yml": {
+                        "services": [
+                            "database:",
+                                "image: mariadb:latest",
+                            "volumes:",
+                                "- \"db_data:/var/lib/mysql\"",
+                            "restart: always",
+                            "environment:",
+                                "- MARIADB_ROOT_PASSWORD=root",
+                                "- MARIADB_DATABASE=shopware",
+                                "- MARIADB_USER=root",
+                                "- MARIADB_PASSWORD=root",
+                            "ports:",
+                                "- \"3306:3306\""
+                        ]
+                    }
+                },
                 "post-install-output": [
                     "  * <fg=blue>Setup</>",
                     "    Test "
