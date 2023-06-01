@@ -3,7 +3,7 @@
         "webwirkung/shopware-starter": {
             "manifest": {
                 "copy-from-recipe": {
-                    "config/": "%CONFIG_DIR%/"
+                    "root/": ""
                 },
                 "gitignore": [
                     "/public/asset-manifest.json",
@@ -16,28 +16,43 @@
                     "**/.DS_Store"
 
                 ],
-                "docker-compose": {
-                    "docker-compose.override.yml": {
-                        "services": [
+                "post-install-output": [
+                    "  * <fg=green>Let's rock!</>"
+                ]
+            },
+            "files": {
+                "root/docker-compose.override.yml": {
+                    "contents": [
+                        "version: '3'",
+                        "services:",
+                            "mailer:",
+                                "image: schickling/mailcatcher",
+                                "ports: [\"1025\", \"1080\"]",
+
                             "database:",
                                 "image: mariadb:latest",
-                            "volumes:",
-                                "- \"db_data:/var/lib/mysql\"",
-                            "restart: always",
-                            "environment:",
-                                "- MARIADB_ROOT_PASSWORD=root",
-                                "- MARIADB_DATABASE=shopware",
-                                "- MARIADB_USER=root",
-                                "- MARIADB_PASSWORD=root",
-                            "ports:",
-                                "- \"3306:3306\""
-                        ]
-                    }
-                },
-                "post-install-output": [
-                    "  * <fg=blue>Setup</>",
-                    "    Test "
-                ]
+                                "volumes:",
+                                    "- \"db_data:/var/lib/mysql\"",
+                                "environment:",
+                                    "- MARIADB_ROOT_PASSWORD=root",
+                                    "- MARIADB_DATABASE=shopware,",
+                                    "- MARIADB_USER=root",
+                                    "- MARIADB_PASSWORD=root",
+                                "ports:",
+                                    "- \"3306:3306\"",
+
+                            "opensearch:",
+                                "ports:",
+                                    "- \"9200\"",
+
+                                "profiles:",
+                                    "- donotstart,",
+
+                        "volumes:",
+                            "db-data:"
+                    ],
+                    "executable": false
+                }
             },
             "ref": "9c1b29f4e3f33f4ca2da2529771c849d2bb326d8"
         }
