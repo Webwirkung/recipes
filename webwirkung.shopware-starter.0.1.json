@@ -32,7 +32,7 @@
                         "   database:",
                         "       image: mariadb:latest",
                         "       volumes:",
-                        "           - \"db_data:/var/lib/mysql\"",
+                        "           - \"db-data:/var/lib/mysql\"",
                         "       environment:",
                         "           - MARIADB_ROOT_PASSWORD=root",
                         "           - MARIADB_DATABASE=shopware,",
@@ -46,10 +46,10 @@
                         "           - \"9200\"",
                         "",
                         "       profiles:",
-                        "           - donotstart,",
+                        "           - donotstart",
                         "",
-                        "   volumes:",
-                        "       db-data:"
+                        "volumes:",
+                        "   db-data:"
                     ],
                     "executable": false
                 }
