@@ -13,8 +13,14 @@
                     "*.sql",
                     "*.gz",
                     "*.bak",
-                    "**/.DS_Store"
-
+                    "**/.DS_Store",
+                    "!custom/plugins",
+                    "!custom/plugins/.gitkeep",
+                    "!custom/plugins/.gitignore,",
+                    "!/var/plugins.json",
+                    "!/var/theme-files.json",
+                    "!/var/theme-variables.scss",
+                    "*/node_modules"
                 ],
                 "post-install-output": [
                     "  * <fg=green>Let's rock!</>"
@@ -52,7 +58,11 @@
                         "   db-data:"
                     ],
                     "executable": false
-                }
+                },
+                "root/.env.local": [
+                    "SHOPWARE_SKIP_WEBINSTALLER=\"1\"",
+                    "COMPOSER_PLUGIN_LOADER=\"1\""
+                ]
             },
             "ref": "0eedc8011c353b79f29f845022ec0f84c62b5008"
         }
